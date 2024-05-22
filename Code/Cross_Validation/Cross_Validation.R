@@ -16,7 +16,7 @@ library(truncnorm)
 ###
 
 data=read.csv(paste0("https://github.com/perrywilliamsunr/",
-                     "Wood-Duck-Mercury-Contamination/raw/",
+                     "Mercury-Waterfowl-RiskAssessment/raw/",
                      "main/Data/data.csv"))
 
 ###
@@ -136,12 +136,12 @@ foreach(l = K, .packages=c('invgamma', 'Matrix', 'mvtnorm', 'truncnorm')) %dopar
   
   # Source the MCMC_Algorithm.R script from GitHub
   source(paste0('https://raw.githubusercontent.com/perrywilliamsunr/',
-                'Wood-Duck-Mercury-Contamination/main/Code/MCMC_Algorithm/',
+                'Mercury-Waterfowl-RiskAssessment/main/Code/MCMC_Algorithm/',
                 'MCMC_Algorithm.R'))
   
   # Run the MCMC sampling
   file_name <- paste0("MCMC_CV_output_", l, ".csv")
-  save_dir <- "/Users/pwill/Dropbox/GitHub/Wood-Duck-Mercury-Contamination/R_Output"
+  save_dir <- "~/Dropbox/GitHub/Mercury-Waterfowl-RiskAssessment/R_Output"
   run_mcmc(y, X, n.iter, initial_values, tuning_parameters, prior_parameters, file_name, save_dir)
   
   
@@ -180,7 +180,7 @@ q.liver.save=matrix(NA,44,3)
 
 for(l in 1:44){
   data=read.csv(paste0("https://github.com/perrywilliamsunr/",
-                       "Wood-Duck-Mercury-Contamination/raw/",
+                       "Mercury-Waterfowl-RiskAssessment/raw/",
                        "main/Data/data.csv"))
   data.ho=data[data$bird_id==l,]
   
@@ -188,9 +188,11 @@ for(l in 1:44){
   thin=1
   ind=seq(burn,n.iter,thin)
 
-  load(paste0("~/Dropbox/projects/Waterfowl/Ducks/",
-              "Wood Ducks Mercury/Manuscript/",
-              "Appendix/MCMC.Output.CV.",l,".RData"))
+  # load(paste0("~/Dropbox/projects/Waterfowl/Ducks/",
+  #             "Wood Ducks Mercury/Manuscript/",
+  #             "Appendix/MCMC.Output.CV.",l,".RData"))
+  
+  load(paste0(save_dir,"/MCMC.Output.CV.",l,".RData"))
 
   beta.save=MCMC.Output$beta
   rho.save=MCMC.Output$rho

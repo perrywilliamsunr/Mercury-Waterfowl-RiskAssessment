@@ -16,11 +16,11 @@ library(R.utils)     # For saving files
 # Define your data and parameters
 n.iter <- 20000  # Number of MCMC iterations
 file_name <- "Top_Model_Output"  # Base name for saving files
-save_dir <- "/Users/pwill/Dropbox/GitHub/Wood-Duck-Mercury-Contamination/R_Output"  # Directory to save output
+save_dir <- "~/Dropbox/GitHub/Mercury-Waterfowl-RiskAssessment/R_Output"  # Directory to save output
 
 # Load data from GitHub
 data <- read.csv(paste0("https://github.com/perrywilliamsunr/",
-                        "Wood-Duck-Mercury-Contamination/raw/main/Data/data.csv"))
+                        "Mercury-Waterfowl-RiskAssessment/raw/main/Data/data.csv"))
 
 # Prepare data for MCMC
 n <- length(unique(data$bird_id))
@@ -109,7 +109,7 @@ prior_parameters <- list(
 
 # Source the MCMC_Algorithm.R script from GitHub
 source(paste0('https://raw.githubusercontent.com/perrywilliamsunr/',
-              'Wood-Duck-Mercury-Contamination/main/Code/MCMC_Algorithm/',
+              'Mercury-Waterfowl-RiskAssessment/main/Code/MCMC_Algorithm/',
               'MCMC_Algorithm.R'))
 
 # Run the MCMC sampling
@@ -243,7 +243,7 @@ model.number
 ###
 
 data=read.csv(paste0("~/Dropbox/projects/Waterfowl/Ducks/",
-                     "Wood Ducks Mercury/Manuscript/Appendix/HarvBirdPred.csv"))
+                     "Wood Ducks Mercury/Manuscript/Appendix/prediction_data.csv"))
 
 
 ###
